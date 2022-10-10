@@ -1,0 +1,28 @@
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+<?php init_head(); ?>
+<div id="wrapper">
+	<div class="side-app content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel_s">
+					<div class="panel-body">
+						<div class="_buttons">
+							<?php if(is_admin()) { ?>
+							<a href="<?php echo admin_url('announcements/announcement'); ?>" class="btn btn-primary pull-left display-block"><?php echo _l('new_announcement'); ?></a>
+							<div class="clearfix"></div>
+							<hr class="hr-panel-heading" />
+							<?php } else { echo '<h4 class="no-margin bold">'._l('announcements').'</h4>';} ?>
+						</div>
+						<div class="clearfix"></div>
+						<?php render_datatable(array(_l('name'),_l('announcement_date_list')),'announcements'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php init_tail(); ?>
+<?php $this->load->view('admin/includes/custom_footer') ?>
+
+</body>
+</html>
