@@ -78,7 +78,7 @@
                     <?php echo ' <span class="tag bg-warning text-dark">' . _l('milestone_total_logged_time') . ': ' . seconds_to_time_format($milestone['total_logged_time']). '</span>';
                   } ?>
                 </div>
-                <div class="card-body bg-light border  panel-body ">
+                <div class="card-body bg-light border panel-body">
                     <?php
                   if(count($tasks) == 0){
                   echo "<p class='text-danger'>". _l('milestone_no_tasks_found')."</p>";

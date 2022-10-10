@@ -1,21 +1,26 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<div class="page-header">
-    <ol class="breadcrumb"><!-- breadcrumb -->
-        <li class="breadcrumb-item"><a href="#"> <i class="fa fa-home"></i>  Home</a></li>
-        <li class="breadcrumb-item active"><a href="#">Projects</a></li>
-       
-    </ol><!-- End breadcrumb -->
-    <div class="ml-auto pull-right">
-  
-    </div>
+<div class="col-12">
+   <div class="page-header">
+      <ol class="breadcrumb"><!-- breadcrumb -->
+         <li class="breadcrumb-item"><a href="#"> <i class="fa fa-home"></i>  Home</a></li>
+         <li class="breadcrumb-item active"><a href="#">Projects</a></li>
+         
+      </ol><!-- End breadcrumb -->
+      <div class="ml-auto pull-right">
+   
+      </div>
+   </div>
 </div>
 
 <div class="col-12">
-<h2 class="no-margin section-text font-weight-bold"><?php echo _l('My Projects'); ?></h2>
+   <h2 class="no-margin section-text font-weight-bold pull-left"><?php echo _l('My Projects'); ?></h2>
+   <span class="pull-right tag bg-warning text-dark"><?php echo count($projects) ?></span>
 </div>
 
-<div class="card bg-light text-dark">
+<?php if(!im_mobile()) { ?>
+   <!-- FOR DESKTOP AND TABS -->
+   <!-- <div class="card bg-light text-dark">
       <div class="card-header">
             <h4 class="text-dark mb-0"><?php echo _l('projects_summary'); ?></h4>
       </div>
@@ -24,43 +29,8 @@
       <div class="row">
                   <?php get_template_part('projects/project_summary'); ?>
       </div>
-
       <hr>
 
-      <?php 
-         if(im_mobile()){ ?>
-
-            <?php foreach($projects as $project){ ?>
-                  <div class="card">
-                     
-                     <div class="card-body">
-                        <h4>
-                           <a class="font-weight-bold" href="<?php echo site_url('clients/project/'.$project['id']); ?>"><?php echo $project['name']; ?></a>
-                        </h4>
-                        
-                        <p>
-                           <span class="tag bg-primary mb-1"><?php echo _l("Started : ") .  _d($project['start_date']); ?></span>
-                           <span class="tag bg-warning mb-1"><?php echo _l("Deadline : ") .  _d($project['deadline']); ?></span>
-                        </p>
-                     </div>
-                     <div class="card-footer">
-                        <span class="pull-left">
-                           <?php
-                                    $status = get_project_status_by_id($project['status']);
-                                    echo '<span class="label inline-block" style="color:'.$status['color'].';border:1px solid '.$status['color'].'">'.$status['name'].'</span>';
-                                    ?>
-                        </span>
-                        <span class="pull-right">
-                           <a href="<?php echo site_url('clients/project/'.$project['id']); ?>" class="btn btn-sm btn-primary">
-                               Details <i class="mdi mdi-arrow-right"></i>
-                           </a>
-                        </span>
-                     </div>
-                  </div>
-            <?php } ?>
-
-
-      <?php   }else{ ?>
          <div class="table-responsive">
                      <table class="table dt-table table-projects table-hover table-striped" data-order-col="2" data-order-type="desc">
                         <thead class="bg-dark text-warning">
@@ -109,12 +79,57 @@
                         </tbody>
                      </table>
          </div>
-      <?php   }
-       ?>
-
 
    
    
    </div>
-</div>
+</div> -->
+
+
+<?php } ?>
+
+
+<?php foreach($projects as $project){ ?>
+   <div class="col-12 col-md-4">
+                  <div class="card">
+                     
+                     <div class="card-body">
+                        <h4>
+                           <a class="font-weight-bold" href="<?php echo site_url('clients/project/'.$project['id']); ?>"><?php echo $project['name']; ?></a>
+                        </h4>
+                        
+                        <p>
+                           <span class="tag bg-primary mb-1"><?php echo _l("Started : ") .  _d($project['start_date']); ?></span>
+                           <span class="tag bg-warning mb-1"><?php echo _l("Deadline : ") .  _d($project['deadline']); ?></span>
+                        </p>
+                     </div>
+                     <div class="card-footer">
+                        <span class="pull-left">
+                           <?php
+                                    $status = get_project_status_by_id($project['status']);
+                                    echo '<span class="label inline-block" style="color:'.$status['color'].';border:1px solid '.$status['color'].'">'.$status['name'].'</span>';
+                                    ?>
+                        </span>
+                        <span class="pull-right">
+                           <a href="<?php echo site_url('clients/project/'.$project['id']); ?>" class="btn btn-sm btn-primary">
+                               Details <i class="mdi mdi-arrow-right"></i>
+                           </a>
+                        </span>
+                     </div>
+                  </div>
+   </div>
+   <div class="col-12">
+      <div class="card">
+         <div class="card-body">
+            <p class="font-weight-bold"><?php echo _l("Project Summary") ?></p>
+            <div class="row">
+               <?php get_template_part('projects/project_summary'); ?>
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+<?php } ?>
+
 

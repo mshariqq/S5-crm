@@ -5,6 +5,8 @@
     padding-top: 0px;
   }
 </style>
+
+<div class="col-12">
 <div class="page-header">
     <ol class="breadcrumb"><!-- breadcrumb -->
         <li class="breadcrumb-item"><a href="#"> <i class="fa fa-home"></i>  Home</a></li>
@@ -15,9 +17,11 @@
   
     </div>
 </div>
+</div>
 
 
-<div class="card">
+<div class="col-12">
+<div class="card <?php if(im_mobile()){echo 'bg-light text-dark';}else{echo 'bg-white';} ?>">
   <div class="card-header">
     <h3 class="text-dark font-weight-bold mb-0"><?php echo _l('contract_summary_by_type'); ?></h3>
 
@@ -32,6 +36,8 @@
     <?php get_template_part('contracts_table'); ?>
  </div>
 </div>
+</div>
+
 <script>
   var contracts_by_type = '<?php echo $contracts_by_type_chart; ?>';
 </script>

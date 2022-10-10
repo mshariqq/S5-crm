@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
+<div class="col-12">
 <div class="page-header">
     <ol class="breadcrumb"><!-- breadcrumb -->
         <li class="breadcrumb-item"><a href="#"> <i class="fa fa-home"></i>  Home</a></li>
@@ -9,6 +10,7 @@
     <div class="ml-auto pull-right">
   
     </div>
+</div>
 </div>
 
 

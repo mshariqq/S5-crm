@@ -1,4 +1,9 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+
+
+<!-- if mobile -->
+<?php if(!is_mobile()){ ?>
+    
 <table class="table dt-table table-contracts table-bordered table-hover table-striped" data-order-col="4" data-order-type="asc">
   <thead class="bg-primary text-white">
     <tr>
@@ -49,3 +54,42 @@
    <?php } ?>
  </tbody>
 </table>
+<?php } else  {?>
+
+<!-- FOR MOBILE -->
+<div class="col-12 p-0">
+        <div class="row">
+            <?php foreach($contracts as $contract){
+                $expiry_class = '';
+                if (!empty($contract['dateend'])) {
+                  $_date_end = date('Y-m-d', strtotime($contract['dateend']));
+                  if ($_date_end < date('Y-m-d')) {
+                    $expiry_class = 'alert-danger';
+                  }
+                }
+                ?>
+
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                          <h5 class="font-weight-bold"> <?php
+                            echo '<a href="'.site_url('contract/'.$contract['id'].'/'.$contract['hash']).'" class="td-contract-url">'.$contract['subject'].'</a>';
+                            ?></h5>
+                            <p><?php echo _l("Started") ?>  <span class="tag bg-success pull-right"><?php echo _d($contract['datestart']); ?></span> </p>
+                            <p><?php echo _l("Expiry ") ?> <span class="tag bg-danger pull-right"><?php echo _d($contract['dateend']); ?></span></p>
+                            <span class="text-primary"><?php echo $contract['type_name'] . " Renewal"; ?> </span>
+                            <br>
+                            <a href="<?php echo site_url('contract/'.$contract['id'].'/'.$contract['hash']); ?>" class="btn btn-primary btn-sm">Open <i class="fa fa-eye"></i> </a>
+                      </div>
+                    </div>
+                  </div>
+
+            <?php } ?>
+
+
+        </div>
+</div>
+
+<?php } ?>
+
+
