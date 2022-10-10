@@ -18,8 +18,9 @@
                           <?php echo ticket_status_translate($ticket['ticketstatusid']); ?></span>
 
                           <span class="tag bg-warning text-dark pull-right">
+                           
                                 <?php
-                            echo ticket_priority_translate($ticket['priority']);
+                            echo _l("priority : ") . ticket_priority_translate($ticket['priority']);
                             ?>
                           </span>
                          
@@ -38,6 +39,12 @@
                           </span>
                      </p>
                     </h6>
+                </div>
+                <div class="card-footer">
+                                <span class="pull-left text-muted">
+                                <?php echo $ticket['department_name']; ?>
+                                </span>
+                                <a href="<?php echo site_url('clients/ticket/'.$ticket['ticketid']); ?>" class="btn btn-primary pull-right btn-sm">Open <i class="fa fa-eye"></i> </a>
                 </div>
             </div>
         </div>

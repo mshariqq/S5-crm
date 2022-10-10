@@ -114,8 +114,8 @@
                                      <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachments[0]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
                                      <span class="input-group-btn">
                                         <button class="btn btn-success add_more_attachments p8-half" data-max="<?php echo get_option('maximum_allowed_ticket_attachments'); ?>" type="button"><i class="fa fa-plus"></i></button>
-                                    </span>
-                                </div>
+                                        </span>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -151,26 +151,26 @@
                         <?php if(count($ticket->attachments) > 0){
                             echo '<hr />';
                             foreach($ticket->attachments as $attachment){ ?>
-                            <?php
-                            $path = get_upload_path_by_type('ticket').$ticket->ticketid.'/'.$attachment['file_name'];
-                            $is_image = is_image($path);
+                                <?php
+                                $path = get_upload_path_by_type('ticket').$ticket->ticketid.'/'.$attachment['file_name'];
+                                $is_image = is_image($path);
 
-                            if($is_image){
-                                echo '<div class="preview_image">';
+                                if($is_image){
+                                    echo '<div class="preview_image">';
+                                }
+                                ?>
+                                <a href="<?php echo site_url('download/file/ticket/'. $attachment['id']); ?>" class="display-block mbot5">
+                                    <i class="<?php echo get_mime_class($attachment['filetype']); ?>"></i> <?php echo $attachment['file_name']; ?>
+                                    <?php if($is_image){ ?>
+                                    <img src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path($path).'&type='.$attachment['filetype']); ?>" class="mtop5">
+                                    <?php } ?>
+                                </a>
+                                <?php if($is_image){
+                                    echo '</div>';
+                                }
+                                echo '<hr />';
                             }
-                            ?>
-                            <a href="<?php echo site_url('download/file/ticket/'. $attachment['id']); ?>" class="display-block mbot5">
-                                <i class="<?php echo get_mime_class($attachment['filetype']); ?>"></i> <?php echo $attachment['file_name']; ?>
-                                <?php if($is_image){ ?>
-                                <img src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path($path).'&type='.$attachment['filetype']); ?>" class="mtop5">
-                                <?php } ?>
-                            </a>
-                            <?php if($is_image){
-                                echo '</div>';
-                            }
-                            echo '<hr />';
-                        }
-                    } ?>
+                        } ?>
                 </div>
             </div>
         </div>
@@ -210,8 +210,8 @@
                             echo '</div>';
                         }
                         echo '<hr />';
-                    }
-                } ?>
+                            }
+                        } ?>
             </div>
         </div>
     </div>
